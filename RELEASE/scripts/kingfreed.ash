@@ -6,7 +6,7 @@ cli_execute("refresh all");
 use(1, $item[model train set]);
 set_property("valueOfAdventure", 6000);
 //Time-Twitching Tower is available
-if(can_adventure($location[The Time-Twitching Tower]))
+if(can_adventure($location[The Primordial Stew]))
 {
 	set_property("valueOfAdventure", 12000);
 	cli_execute("garbo nobarf candydish ascend");
