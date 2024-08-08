@@ -1,6 +1,3 @@
-import <CONSUME.ash>
-import <Rollover Management>
-
 cli_execute("pull all");
 cli_execute("refresh all");
 use(1, $item[model train set]);
@@ -25,7 +22,7 @@ else //Nothing special
 set_property("valueOfAdventure", 6000);
 cli_execute("PVP_MAB.js");
 cli_execute("drink stillsuit distillate");
-CONSUME("NIGHTCAP VALUE 3000 ALLOWLIFETIMELIMITED");
-Rollover_Management();
+cli_execute("CONSUME NIGHTCAP VALUE 3000 ALLOWLIFETIMELIMITED");
+cli_execute("Rollover Management");
 int adv = my_adventures();
 cli_execute("combo {adv}");
