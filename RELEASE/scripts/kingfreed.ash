@@ -25,4 +25,4 @@ cli_execute("drink stillsuit distillate");
 cli_execute("CONSUME NIGHTCAP VALUE 3000 ALLOWLIFETIMELIMITED");
 cli_execute("Rollover Management");
 int adv = my_adventures();
-cli_execute("combo {adv}");
+cli_execute(`combo {adv}`);
