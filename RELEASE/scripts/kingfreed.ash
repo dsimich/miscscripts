@@ -1,5 +1,5 @@
-import <CONSUME.ash>;
-import <Rollover Management>;
+import <CONSUME.ash>
+import <Rollover Management>
 
 cli_execute("pull all");
 cli_execute("refresh all");
