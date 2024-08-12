@@ -1,6 +1,9 @@
 cli_execute("pull all");
 cli_execute("refresh all");
-use(1, $item[model train set]);
+if(!(get_campground() contains $item[model train set]))
+{
+	use(1, $item[model train set]);
+}
 set_property("valueOfAdventure", 6000);
 //Time-Twitching Tower is available
 if(can_adventure($location[The Primordial Stew]))
