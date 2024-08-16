@@ -28,5 +28,11 @@ cli_execute("drink stillsuit distillate");
 cli_execute("CONSUME NIGHTCAP VALUE 3000 ALLOWLIFETIMELIMITED");
 cli_execute("Rollover Management");
 int adv = my_adventures();
-cli_execute(`combo {adv}`);
-cli_execute(`raffle 10`)
+if(adv > 0)
+{
+	cli_execute(`combo {adv}`);
+}
+if(item_amount($item[raffle ticket]) == 0)
+{
+	cli_execute(`raffle 10`)
+}
