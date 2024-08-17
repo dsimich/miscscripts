@@ -34,5 +34,5 @@ if(adv > 0)
 }
 if(item_amount($item[raffle ticket]) == 0)
 {
-	cli_execute(`raffle 10`)
+	cli_execute(`raffle 10`);
 }
