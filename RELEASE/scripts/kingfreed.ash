@@ -9,7 +9,7 @@ set_property("valueOfAdventure", 6000);
 if(can_adventure($location[The Primordial Stew]))
 {
 	set_property("valueOfAdventure", 12000);
-	cli_execute("garbo nobarf candydish ascend target=witchess bishop");
+	cli_execute(`garbo nobarf candydish ascend target="witchess bishop"`);
 	cli_execute("chrono mode=soup");
 }
 else if(holiday() == "Halloween") //Today is Halloween
