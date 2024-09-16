@@ -20,7 +20,7 @@ else if(holiday() == "Halloween") //Today is Halloween
 }
 else //Nothing special
 {
-	cli_execute("garbo candydish");
+	cli_execute("garbo candydish ascend");
 }
 set_property("valueOfAdventure", 6000);
 cli_execute("PVP_MAB.js");
