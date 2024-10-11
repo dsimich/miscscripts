@@ -7,7 +7,7 @@ if(item_amount($item[toast]) > 0)
 if(item_amount($item[stuffed cocoabo]) > 0)
 {
   cli_execute(`acquire ` + item_amount($item[stuffed cocoabo]) + ` stuffed cocoabo`);
-  cli_execute(`csend ` item_amount($item[stuffed cocoabo]) + ` stuffed cocoabo to holatuwol`);
+  cli_execute(`csend ` + item_amount($item[stuffed cocoabo]) + ` stuffed cocoabo to holatuwol`);
 }
 
 foreach it in $items[Deep Dish of Legend, Calzone of Legend, Pizza of Legend] {
