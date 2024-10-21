@@ -13,7 +13,7 @@ if(can_adventure($location[The Primordial Stew]))
 	set_property("valueOfAdventure", 12000);
 	if(remaining_time < warning_time)
 	{
-		cli_execute(`garbo nobarf candydish`);
+		cli_execute(`garbo nobarf candydish quick`);
 	}
 	else
 	{
@@ -26,7 +26,7 @@ else if(holiday() == "Halloween") //Today is Halloween
 	set_property("valueOfAdventure", 12000);
 	if(remaining_time < warning_time)
 	{
-		cli_execute(`garbo nobarf candydish`);
+		cli_execute(`garbo nobarf candydish quick`);
 	}
 	else
 	{
@@ -38,7 +38,7 @@ else //Nothing special
 {
 	if(remaining_time < warning_time)
 	{
-		cli_execute(`garbo nobarf candydish`);
+		cli_execute(`garbo nobarf candydish quick`);
 	}
 	else
 	{
@@ -48,10 +48,17 @@ else //Nothing special
 set_property("valueOfAdventure", 6000);
 cli_execute("PVP_MAB.js");
 cli_execute("drink stillsuit distillate");
-cli_execute("CONSUME NIGHTCAP VALUE 3000 ALLOWLIFETIMELIMITED");
+if(remaining_time < warning_time)
+	{
+		cli_execute("CONSUME NIGHTCAP");
+	}
+	else
+	{
+		cli_execute("CONSUME NIGHTCAP VALUE 3000 ALLOWLIFETIMELIMITED");
+	}
 cli_execute("Rollover Management");
 int adv = my_adventures();
-if(adv > 0)
+if(adv > 0 && remaining_time > warning_time)
 {
 	cli_execute(`combo {adv}`);
 }
