@@ -13,20 +13,26 @@ string tattoos = visit_url("account_tattoos.php");
 string monorail = visit_url("place.php?whichplace=monorail");
 if(!contains_text(tattoos,"redrogertat") && !quick)
 {
-	if(item_amount($item[PirateRealm guest pass]) == 0 && !contains_text(monorail, "PirateRealm"))
+	if(!contains_text(monorail, "PirateRealm"))
 	{
-		retrieve_item(1, $item[PirateRealm guest pass]);
+		if(item_amount($item[PirateRealm guest pass]) == 0)
+		{
+			retrieve_item(1, $item[PirateRealm guest pass]);
+		}
+		use($item[PirateRealm guest pass]);
 	}
-	use($item[PirateRealm guest pass]);
 	cli_execute(`piraterealm skull cemetary fortress`);
 }
 if(!contains_text(tattoos,"ltttat") && !quick)
 {
-	if(item_amount($item[inflatable LT&T telegraph office]) == 0 && !get_property("telegraphOfficeAvailable").to_boolean())
+	if(!get_property("telegraphOfficeAvailable").to_boolean())
 	{
-		retrieve_item(1, $item[inflatable LT&T telegraph office]);
+		if(item_amount($item[inflatable LT&T telegraph office]) == 0)
+		{
+			retrieve_item(1, $item[inflatable LT&T telegraph office]);
+		}
+		use($item[inflatable LT&T telegraph office]);
 	}
-	use($item[inflatable LT&T telegraph office]);
 	cli_execute(`telegram`);
 }
 //Time-Twitching Tower is available
