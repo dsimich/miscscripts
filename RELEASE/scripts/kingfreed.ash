@@ -94,7 +94,7 @@ if(adv > 0)
 	}
 	else
 	{
-		comboadv == adv;
+		comboadv = adv;
 	}
 	cli_execute(`combo {comboadv}`);
 }
