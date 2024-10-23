@@ -11,7 +11,7 @@ boolean quick = remaining_time < warning_time;
 //get some tattoos
 string tattoos = visit_url("account_tattoos.php");
 string monorail = visit_url("place.php?whichplace=monorail");
-int startPriceLimit = get_property("autoBuyPriceLimit");
+int startPriceLimit = get_property("autoBuyPriceLimit").to_int();
 if(!contains_text(tattoos,"redrogertat") && !quick)
 {
 	if(!contains_text(monorail, "PirateRealm"))
