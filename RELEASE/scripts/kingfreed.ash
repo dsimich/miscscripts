@@ -11,13 +11,23 @@ boolean quick = remaining_time < warning_time;
 //get some tattoos
 string tattoos = visit_url("account_tattoos.php");
 string monorail = visit_url("place.php?whichplace=monorail");
+int startPriceLimit = get_property("autoBuyPriceLimit");
 if(!contains_text(tattoos,"redrogertat") && !quick)
 {
 	if(!contains_text(monorail, "PirateRealm"))
 	{
 		if(item_amount($item[PirateRealm guest pass]) == 0)
 		{
-			retrieve_item(1, $item[PirateRealm guest pass]);
+			if(mall_price($item[PirateRealm guest pass]) > startPriceLimit)
+			{
+				set_property("autoBuyPriceLimit", mall_price($item[PirateRealm guest pass]) + 1);
+				retrieve_item(1, $item[PirateRealm guest pass]);
+				set_property("autoBuyPriceLimit", startPriceLimit);
+			}
+			else
+			{
+				retrieve_item(1, $item[PirateRealm guest pass]);
+			}
 		}
 		use($item[PirateRealm guest pass]);
 	}
@@ -27,7 +37,13 @@ if(!contains_text(tattoos,"ltttat") && !quick)
 {
 	if(!get_property("telegraphOfficeAvailable").to_boolean())
 	{
-		if(item_amount($item[inflatable LT&T telegraph office]) == 0)
+		if(mall_price($item[inflatable LT&T telegraph office]) > startPriceLimit)
+		{
+			set_property("autoBuyPriceLimit", mall_price($item[inflatable LT&T telegraph office]) + 1);
+			retrieve_item(1, $item[inflatable LT&T telegraph office]);
+			set_property("autoBuyPriceLimit", startPriceLimit);
+		}
+		else
 		{
 			retrieve_item(1, $item[inflatable LT&T telegraph office]);
 		}
