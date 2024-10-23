@@ -81,7 +81,7 @@ else
 cli_execute("Rollover Management");
 int adv = my_adventures();
 int borrowedTime = 0;
-if(get_property("_borrowedTimeUsed"))
+if(get_property("_borrowedTimeUsed").to_boolean())
 {
 	borrowedTime = 20;
 }
