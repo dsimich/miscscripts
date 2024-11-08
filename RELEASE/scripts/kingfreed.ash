@@ -15,7 +15,7 @@ boolean quick = remaining_time < warning_time;
 
 //get some tattoos
 string gettats; //Dynamic this eventually
-gettats = ["redrogertat", "ltttat"];
+gettats = $strings["redrogertat", "ltttat"];
 if(gettats <> "")
 {
 	foreach tat in gettats
