@@ -54,6 +54,7 @@ void get_tattoos(string[int] tattoos, boolean quick)
 
 void farm(int turns, boolean quick)
 {
+	turns = -turns;
 	//Turns is turns remaining
 	//Time-Twitching Tower is available
 	if(can_adventure($location[The Primordial Stew]))
@@ -61,36 +62,36 @@ void farm(int turns, boolean quick)
 		set_property("valueOfAdventure", 12000);
 		if(quick)
 		{
-			cli_execute(`garbo nobarf candydish quick -{turns}`);
+			cli_execute(`garbo nobarf candydish quick {turns}`);
 		}
 		else
 		{
-			cli_execute(`garbo nobarf candydish ascend -{turns}`);
+			cli_execute(`garbo nobarf candydish ascend {turns}`);
 		}
-		cli_execute("chrono mode=soup -{turns}");
+		cli_execute("chrono mode=soup {turns}");
 	}
 	else if(holiday() == "Halloween") //Today is Halloween
 	{
 		set_property("valueOfAdventure", 12000);
 		if(quick)
 		{
-			cli_execute(`garbo nobarf candydish quick -{turns}`);
+			cli_execute(`garbo nobarf candydish quick {turns}`);
 		}
 		else
 		{
-			cli_execute("garbo nobarf candydish ascend -{turns}");
+			cli_execute("garbo nobarf candydish ascend {turns}");
 		}
-		cli_execute("freecandy -{turns}");
+		cli_execute("freecandy {turns}");
 	}
 	else //Nothing special
 	{
 		if(quick)
 		{
-			cli_execute(`garbo nobarf candydish quick -{turns}`);
+			cli_execute(`garbo nobarf candydish quick {turns}`);
 		}
 		else
 		{
-			cli_execute("garbo candydish ascend -{turns}");
+			cli_execute("garbo candydish ascend {turns}");
 		}
 	}
 	return;
