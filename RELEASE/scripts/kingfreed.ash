@@ -28,14 +28,14 @@ boolean buyPasses(string tattoo, boolean quick)
 			retrieve_item(1, tattoopass[tattoo]);
 		}
 	}
-	use(tattoopass[tattoo]);
+	return use(tattoopass[tattoo]);
 }
 
-boolean get_tattoos(string[int] tattoos, boolean quick)
+void get_tattoos(string[int] tattoos, boolean quick)
 {
 	if(!doit || !quick)
 	{
-		return false;
+		return;
 	}
 
 	foreach tat in tattoos
@@ -49,9 +49,10 @@ boolean get_tattoos(string[int] tattoos, boolean quick)
 			cli_execute(`telegram`);
 		}
 	}
+	return;
 }
 
-boolean farm(int turns, boolean quick)
+void farm(int turns, boolean quick)
 {
 	//Turns is turns remaining
 	//Time-Twitching Tower is available
@@ -92,6 +93,7 @@ boolean farm(int turns, boolean quick)
 			cli_execute("garbo candydish ascend -{turns}");
 		}
 	}
+	return;
 }
 
 void main()
