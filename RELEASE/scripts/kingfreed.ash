@@ -15,11 +15,11 @@ boolean quick = remaining_time < warning_time;
 
 //get some tattoos
 string[int] gettats = {"redrogertat", "ltttat"}; //Dynamic this eventually
-if(gettats != "")
+if(count(gettats) > 0)
 {
 	foreach tat in gettats
 	{
-		buyPasses(tat, quick);
+		buyPasses(gettats[tat], quick);
 	}
 }
 if(my_adventures() < count(gettats)*40)
@@ -74,13 +74,13 @@ boolean buyPasses(string tattoo, boolean quick)
 	}
 	int startPriceLimit = get_property("autoBuyPriceLimit").to_int();
 	item[string] tattoopass = {
-	"redrogertat": $item[PirateRealm guest pass]
-	"ltttat": $item[inflatable LT&T telegraph office]
-	"sbreaktat": $item[One-day ticket to Spring Break Beach]
-	"walmarttat": $item[One-day ticket to The Glaciest]
-	"merctat": $item[One-day ticket to Conspiracy Island]
-	"frpass": $item[FantasyRealm guest pass]
-	"gingercitytat": $item[Counterfeit city]
+	"redrogertat": $item[PirateRealm guest pass],
+	"ltttat": $item[inflatable LT&T telegraph office],
+	"sbreaktat": $item[One-day ticket to Spring Break Beach],
+	"walmarttat": $item[One-day ticket to The Glaciest],
+	"merctat": $item[One-day ticket to Conspiracy Island],
+	"frpass": $item[FantasyRealm guest pass],
+	"gingercitytat": $item[Counterfeit city],
 	"debbietat": $item[One-day ticket to That 70s Volcano]};
 	if(item_amount(tattoopass[tattoo]) == 0)
 	{
@@ -98,7 +98,7 @@ boolean buyPasses(string tattoo, boolean quick)
 	use(tattoopass[tattoo]);
 }
 
-boolean get_tattoos(string tattoos, boolean quick)
+boolean get_tattoos(string[int] tattoos, boolean quick)
 {
 	if(!doit || !quick)
 	{
@@ -107,11 +107,11 @@ boolean get_tattoos(string tattoos, boolean quick)
 
 	foreach tat in tattoos
 	{
-		if(!contains_text(tat,"redrogertat"))
+		if(!contains_text(tattoos[tat],"redrogertat"))
 		{
 			cli_execute(`piraterealm glass cemetary temple`);
 		}
-		if(!contains_text(tat,"ltttat"))
+		if(!contains_text(tattoos[tat],"ltttat"))
 		{
 			cli_execute(`telegram`);
 		}
