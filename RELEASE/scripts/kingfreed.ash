@@ -33,7 +33,7 @@ boolean buyPasses(string tattoo, boolean quick)
 
 void get_tattoos(string[int] tattoos, boolean quick)
 {
-	if(!doit || !quick)
+	if(!quick)
 	{
 		return;
 	}
