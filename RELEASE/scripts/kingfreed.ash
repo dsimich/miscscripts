@@ -68,7 +68,7 @@ void farm(int turns, boolean quick)
 		{
 			cli_execute(`garbo nobarf candydish ascend {turns}`);
 		}
-		cli_execute("chrono mode=soup {turns}");
+		cli_execute(`chrono mode=soup {turns}`);
 	}
 	else if(holiday() == "Halloween") //Today is Halloween
 	{
@@ -79,9 +79,9 @@ void farm(int turns, boolean quick)
 		}
 		else
 		{
-			cli_execute("garbo nobarf candydish ascend {turns}");
+			cli_execute(`garbo nobarf candydish ascend {turns}`);
 		}
-		cli_execute("freecandy {turns}");
+		cli_execute(`freecandy {turns}`);
 	}
 	else //Nothing special
 	{
@@ -91,7 +91,7 @@ void farm(int turns, boolean quick)
 		}
 		else
 		{
-			cli_execute("garbo candydish ascend {turns}");
+			cli_execute(`garbo candydish ascend {turns}`);
 		}
 	}
 	return;
