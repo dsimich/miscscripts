@@ -14,8 +14,7 @@ int remaining_time = rollover() - (now_to_int()/1000);
 boolean quick = remaining_time < warning_time;
 
 //get some tattoos
-string gettats; //Dynamic this eventually
-gettats = $strings["redrogertat", "ltttat"];
+string[int] gettats = {"redrogertat", "ltttat"}; //Dynamic this eventually
 if(gettats != "")
 {
 	foreach tat in gettats
@@ -74,15 +73,15 @@ boolean buyPasses(string tattoo, boolean quick)
 		return false;
 	}
 	int startPriceLimit = get_property("autoBuyPriceLimit").to_int();
-	item[string] tattoopass;
-	tattoopass["redrogertat"] = $item[PirateRealm guest pass];
-	tattoopass["ltttat"] = $item[inflatable LT&T telegraph office];
-	tattoopass["sbreaktat"] = $item[One-day ticket to Spring Break Beach];
-	tattoopass["walmarttat"] = $item[One-day ticket to The Glaciest];
-	tattoopass["merctat"] = $item[One-day ticket to Conspiracy Island];
-	tattoopass["frpass"] = $item[FantasyRealm guest pass];
-	tattoopass["gingercitytat"] = $item[Counterfeit city];
-	tattoopass["debbietat"] = $item[One-day ticket to That 70s Volcano];
+	item[string] tattoopass = {
+	"redrogertat": $item[PirateRealm guest pass]
+	"ltttat": $item[inflatable LT&T telegraph office]
+	"sbreaktat": $item[One-day ticket to Spring Break Beach]
+	"walmarttat": $item[One-day ticket to The Glaciest]
+	"merctat": $item[One-day ticket to Conspiracy Island]
+	"frpass": $item[FantasyRealm guest pass]
+	"gingercitytat": $item[Counterfeit city]
+	"debbietat": $item[One-day ticket to That 70s Volcano]};
 	if(item_amount(tattoopass[tattoo]) == 0)
 	{
 		if(mall_price(tattoopass[tattoo]) > startPriceLimit)
