@@ -12,87 +12,24 @@ if(inebriety_limit() - my_inebriety() < 5 || fullness_limit() - my_fullness() < 
 int warning_time = 180 * 60;
 int remaining_time = rollover() - (now_to_int()/1000);
 boolean quick = remaining_time < warning_time;
+
 //get some tattoos
-string tattoos = visit_url("account_tattoos.php");
-string monorail = visit_url("place.php?whichplace=monorail");
-int startPriceLimit = get_property("autoBuyPriceLimit").to_int();
-if(!contains_text(tattoos,"redrogertat") && !quick)
+string gettats; //Dynamic this eventually
+gettats = ["redrogertat", "ltttat"];
+if(gettats <> "")
 {
-	if(!contains_text(monorail, "PirateRealm"))
+	foreach tat in gettats
 	{
-		if(item_amount($item[PirateRealm guest pass]) == 0)
-		{
-			if(mall_price($item[PirateRealm guest pass]) > startPriceLimit)
-			{
-				set_property("autoBuyPriceLimit", mall_price($item[PirateRealm guest pass]) + 1);
-				retrieve_item(1, $item[PirateRealm guest pass]);
-				set_property("autoBuyPriceLimit", startPriceLimit);
-			}
-			else
-			{
-				retrieve_item(1, $item[PirateRealm guest pass]);
-			}
-		}
-		use($item[PirateRealm guest pass]);
-	}
-	cli_execute(`piraterealm glass cemetary temple`);
-}
-if(!contains_text(tattoos,"ltttat") && !quick)
-{
-	if(!get_property("telegraphOfficeAvailable").to_boolean())
-	{
-		if(mall_price($item[inflatable LT&T telegraph office]) > startPriceLimit)
-		{
-			set_property("autoBuyPriceLimit", mall_price($item[inflatable LT&T telegraph office]) + 1);
-			retrieve_item(1, $item[inflatable LT&T telegraph office]);
-			set_property("autoBuyPriceLimit", startPriceLimit);
-		}
-		else
-		{
-			retrieve_item(1, $item[inflatable LT&T telegraph office]);
-		}
-		use($item[inflatable LT&T telegraph office]);
-	}
-	cli_execute(`telegram`);
-}
-//Time-Twitching Tower is available
-if(can_adventure($location[The Primordial Stew]))
-{
-	set_property("valueOfAdventure", 12000);
-	if(quick)
-	{
-		cli_execute(`garbo nobarf candydish quick`);
-	}
-	else
-	{
-		cli_execute(`garbo nobarf candydish ascend`);
-	}
-	cli_execute("chrono mode=soup");
-}
-else if(holiday() == "Halloween") //Today is Halloween
-{
-	set_property("valueOfAdventure", 12000);
-	if(quick)
-	{
-		cli_execute(`garbo nobarf candydish quick`);
-	}
-	else
-	{
-		cli_execute("garbo nobarf candydish ascend");
-	}
-	cli_execute("freecandy");
-}
-else //Nothing special
-{
-	if(quick)
-	{
-		cli_execute(`garbo nobarf candydish quick`);
-	}
-	else
-	{
-		cli_execute("garbo candydish ascend");
+		buyPasses(tat, quick);
 	}
 }
+if(my_adventures() < count(gettats)*40)
+{
+	farm(count(gettats)*40, quick);
+}
+get_tattoos(gettats, quick);
+farm(0, quick);
+
 set_property("valueOfAdventure", 6000);
 cli_execute("PVP_MAB.js");
 cli_execute("drink stillsuit distillate");
@@ -127,4 +64,100 @@ if(adv > 0)
 if(item_amount($item[raffle ticket]) == 0)
 {
 	cli_execute(`raffle 100`);
+}
+
+//buy and use daily passes
+boolean buyPasses(string tattoo, boolean quick)
+{
+	if(!quick)
+	{
+		return false;
+	}
+	int startPriceLimit = get_property("autoBuyPriceLimit").to_int();
+	item[string] tattoopass;
+	tattoopass["redrogertat"] = $item[PirateRealm guest pass];
+	tattoopass["ltttat"] = $item[inflatable LT&T telegraph office];
+	tattoopass["sbreaktat"] = $item[One-day ticket to Spring Break Beach];
+	tattoopass["walmarttat"] = $item[One-day ticket to The Glaciest];
+	tattoopass["merctat"] = $item[One-day ticket to Conspiracy Island];
+	tattoopass["frpass"] = $item[FantasyRealm guest pass];
+	tattoopass["gingercitytat"] = $item[Counterfeit city];
+	tattoopass["debbietat"] = $item[One-day ticket to That 70s Volcano];
+	if(item_amount(tattoopass[tattoo]) == 0)
+	{
+		if(mall_price(tattoopass[tattoo]) > startPriceLimit)
+		{
+			set_property("autoBuyPriceLimit", mall_price(tattoopass[tattoo]) + 1);
+			retrieve_item(1, tattoopass[tattoo]);
+			set_property("autoBuyPriceLimit", startPriceLimit);
+		}
+		else
+		{
+			retrieve_item(1, tattoopass[tattoo]);
+		}
+	}
+	use(tattoopass[tattoo]);
+}
+
+boolean get_tattoos(string tattoos, boolean quick)
+{
+	if(!doit || !quick)
+	{
+		return false;
+	}
+
+	foreach tat in tattoos
+	{
+		if(!contains_text(tat,"redrogertat"))
+		{
+			cli_execute(`piraterealm glass cemetary temple`);
+		}
+		if(!contains_text(tat,"ltttat"))
+		{
+			cli_execute(`telegram`);
+		}
+	}
+}
+
+boolean farm(int turns, boolean quick)
+{
+	//Turns is turns remaining
+	//Time-Twitching Tower is available
+	if(can_adventure($location[The Primordial Stew]))
+	{
+		set_property("valueOfAdventure", 12000);
+		if(quick)
+		{
+			cli_execute(`garbo nobarf candydish quick -{turns}`);
+		}
+		else
+		{
+			cli_execute(`garbo nobarf candydish ascend -{turns}`);
+		}
+		cli_execute("chrono mode=soup -{turns}");
+	}
+	else if(holiday() == "Halloween") //Today is Halloween
+	{
+		set_property("valueOfAdventure", 12000);
+		if(quick)
+		{
+			cli_execute(`garbo nobarf candydish quick -{turns}`);
+		}
+		else
+		{
+			cli_execute("garbo nobarf candydish ascend -{turns}");
+		}
+		cli_execute("freecandy -{turns}");
+	}
+	else //Nothing special
+	{
+		if(quick)
+		{
+			cli_execute(`garbo nobarf candydish quick -{turns}`);
+		}
+		else
+		{
+			cli_execute("garbo candydish ascend -{turns}");
+		}
+	}
 }
