@@ -1,70 +1,3 @@
-cli_execute("pull all");
-cli_execute("refresh all");
-if(!(get_campground() contains $item[model train set]))
-{
-	use(1, $item[model train set]);
-}
-set_property("valueOfAdventure", 6000);
-if(inebriety_limit() - my_inebriety() < 5 || fullness_limit() - my_fullness() < 5)
-{
-	abort("Figure out what you want to do yourself, you have limited organs left.");
-}
-int warning_time = 180 * 60;
-int remaining_time = rollover() - (now_to_int()/1000);
-boolean quick = remaining_time < warning_time;
-
-//get some tattoos
-string[int] gettats = {"redrogertat", "ltttat"}; //Dynamic this eventually
-if(count(gettats) > 0)
-{
-	foreach tat in gettats
-	{
-		buyPasses(gettats[tat], quick);
-	}
-}
-if(my_adventures() < count(gettats)*40)
-{
-	farm(count(gettats)*40, quick);
-}
-get_tattoos(gettats, quick);
-farm(0, quick);
-
-set_property("valueOfAdventure", 6000);
-cli_execute("PVP_MAB.js");
-cli_execute("drink stillsuit distillate");
-if(quick)
-{
-	cli_execute("CONSUME NIGHTCAP");
-}
-else
-{
-	cli_execute("CONSUME NIGHTCAP VALUE 3000 ALLOWLIFETIMELIMITED");
-}
-cli_execute("Rollover Management");
-int adv = my_adventures();
-int borrowedTime = 0;
-if(get_property("_borrowedTimeUsed").to_boolean())
-{
-	borrowedTime = 20;
-}
-if(adv > 0)
-{
-	int comboadv;
-	if(40 - borrowedTime + numeric_modifier( "adventures" ) + adv > 200)
-	{
-		comboadv = 40 - borrowedTime + numeric_modifier( "adventures" ) + adv - 200;
-	}
-	else
-	{
-		comboadv = adv;
-	}
-	cli_execute(`combo {comboadv}`);
-}
-if(item_amount($item[raffle ticket]) == 0)
-{
-	cli_execute(`raffle 100`);
-}
-
 //buy and use daily passes
 boolean buyPasses(string tattoo, boolean quick)
 {
@@ -158,5 +91,75 @@ boolean farm(int turns, boolean quick)
 		{
 			cli_execute("garbo candydish ascend -{turns}");
 		}
+	}
+}
+
+void main()
+{
+	cli_execute("pull all");
+	cli_execute("refresh all");
+	if(!(get_campground() contains $item[model train set]))
+	{
+		use(1, $item[model train set]);
+	}
+	set_property("valueOfAdventure", 6000);
+	if(inebriety_limit() - my_inebriety() < 5 || fullness_limit() - my_fullness() < 5)
+	{
+		abort("Figure out what you want to do yourself, you have limited organs left.");
+	}
+	int warning_time = 180 * 60;
+	int remaining_time = rollover() - (now_to_int()/1000);
+	boolean quick = remaining_time < warning_time;
+
+	//get some tattoos
+	string[int] gettats = {"redrogertat", "ltttat"}; //Dynamic this eventually
+	if(count(gettats) > 0)
+	{
+		foreach tat in gettats
+		{
+			buyPasses(gettats[tat], quick);
+		}
+	}
+	if(my_adventures() < count(gettats)*40)
+	{
+		farm(count(gettats)*40, quick);
+	}
+	get_tattoos(gettats, quick);
+	farm(0, quick);
+
+	set_property("valueOfAdventure", 6000);
+	cli_execute("PVP_MAB.js");
+	cli_execute("drink stillsuit distillate");
+	if(quick)
+	{
+		cli_execute("CONSUME NIGHTCAP");
+	}
+	else
+	{
+		cli_execute("CONSUME NIGHTCAP VALUE 3000 ALLOWLIFETIMELIMITED");
+	}
+	cli_execute("Rollover Management");
+	int adv = my_adventures();
+	int borrowedTime = 0;
+	if(get_property("_borrowedTimeUsed").to_boolean())
+	{
+		borrowedTime = 20;
+	}
+	if(adv > 0)
+	{
+		int comboadv;
+		if(40 - borrowedTime + numeric_modifier( "adventures" ) + adv > 200)
+		{
+			comboadv = 40 - borrowedTime + numeric_modifier( "adventures" ) + adv - 200;
+		}
+		else
+		{
+			comboadv = adv;
+		}
+		cli_execute(`combo {comboadv}`);
+	}
+	if(item_amount($item[raffle ticket]) == 0)
+	{
+		cli_execute(`raffle 100`);
 	}
 }
