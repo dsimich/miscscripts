@@ -42,7 +42,7 @@ void get_tattoos(string[int] tattoos, boolean quick)
 	{
 		if(!contains_text(tattoos[tat],"redrogertat"))
 		{
-			cli_execute(`piraterealm glass cemetary temple`);
+			cli_execute(`piraterealm skull cemetary fortress`);
 		}
 		if(!contains_text(tattoos[tat],"ltttat"))
 		{
