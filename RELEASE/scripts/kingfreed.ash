@@ -131,7 +131,7 @@ void main()
 	farm(0, quick);
 
 	set_property("valueOfAdventure", 6000);
-	cli_execute("PVP_MAB.js");
+	cli_execute("pvp_mab.js");
 	cli_execute("drink stillsuit distillate");
 	if(quick)
 	{
