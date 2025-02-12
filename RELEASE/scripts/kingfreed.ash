@@ -106,10 +106,6 @@ void main()
 		use(1, $item[model train set]);
 	}
 	set_property("valueOfAdventure", 6000);
-	if(inebriety_limit() - my_inebriety() < 5 || fullness_limit() - my_fullness() < 5)
-	{
-		abort("Figure out what you want to do yourself, you have limited organs left.");
-	}
 	int warning_time = 180 * 60;
 	int remaining_time = rollover() - (now_to_int()/1000);
 	boolean quick = remaining_time < warning_time;
