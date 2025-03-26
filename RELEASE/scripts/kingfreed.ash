@@ -91,7 +91,7 @@ void farm(int turns, boolean quick)
 		}
 		else
 		{
-			cli_execute(`garbo candydish ascend {turns} target="section 11"`);
+			cli_execute(`garbo candydish ascend {turns} target="pumpkin spice wraith"`);
 		}
 	}
 	return;
