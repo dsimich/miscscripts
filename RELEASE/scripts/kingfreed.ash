@@ -20,12 +20,12 @@ boolean buyPasses(string tattoo, boolean quick)
 		if(mall_price(tattoopass[tattoo]) > startPriceLimit)
 		{
 			set_property("autoBuyPriceLimit", mall_price(tattoopass[tattoo]) + 1);
-			retrieve_item(1, tattoopass[tattoo]);
+			buy(1, tattoopass[tattoo]);
 			set_property("autoBuyPriceLimit", startPriceLimit);
 		}
 		else
 		{
-			retrieve_item(1, tattoopass[tattoo]);
+			buy(1, tattoopass[tattoo]);
 		}
 	}
 	return use(tattoopass[tattoo]);
