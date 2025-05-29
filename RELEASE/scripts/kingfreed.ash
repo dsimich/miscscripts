@@ -92,7 +92,7 @@ void farm(int turns, boolean quick)
 		}
 		else
 		{
-			cli_execute(`garbo candydish ascend {turns} target="pumpkin spice wraith"`);
+			cli_execute(`garbo candydish ascend {turns} target="Magically-animated snowman"`);
 		}
 	}
 	return;
@@ -106,7 +106,7 @@ void main()
 	{
 		use(1, $item[model train set]);
 	}
-	set_property("valueOfAdventure", 6000);
+	set_property("valueOfAdventure", 7000);
 	int warning_time = 180 * 60;
 	int remaining_time = rollover() - (now_to_int()/1000);
 	boolean quick = remaining_time < warning_time;
@@ -127,7 +127,7 @@ void main()
 	get_tattoos(gettats, quick);
 	farm(0, quick);
 
-	set_property("valueOfAdventure", 6000);
+	set_property("valueOfAdventure", 7000);
 	cli_execute("pvp_mab.js");
 	cli_execute("drink stillsuit distillate");
 	if(quick)
