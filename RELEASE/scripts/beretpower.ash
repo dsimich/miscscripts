@@ -9,7 +9,7 @@ void main()
     }
     if(have_effect($effect[Hammertime]) > 0)
     {
-        pant_multiplier += 4;
+        pant_multiplier += 3;
     }
     int hat_power;
     foreach h in $items[]
