@@ -25,5 +25,8 @@ void main()
     pant_power = pant_power * pant_multiplier;
     int shirt_power = get_power(equipped_item($slot[shirt]));
     int total_power = hat_power + pant_power + shirt_power;
+    print("Hat Power: " + hat_power);
+    print("Pant Power: " + pant_power);
+    print("Shirt Power: " + shirt_power);
     print("Total Power: " + total_power);
 }
