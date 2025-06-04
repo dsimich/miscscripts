@@ -7,7 +7,7 @@ void main()
         hat_multiplier += 1;
         pant_multiplier += 1;
     }
-    if(have_effect($effect[Hammertime]))
+    if(have_effect($effect[Hammertime]) > 0)
     {
         pant_multiplier += 4;
     }
