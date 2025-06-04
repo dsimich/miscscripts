@@ -40,7 +40,7 @@ void main()
     int expected_da = total_power / 5;
     if(total_power > 1100)
     {
-        expected_da = (1100 + (total_power - 1100) ** 0.8) / 5 + 1;
+        expected_da = (1100 + (total_power - 1100) ** 0.8) / 5 + 5;
     }
     if(hatrack_fam)
     {
