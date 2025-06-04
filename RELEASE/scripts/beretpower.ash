@@ -46,9 +46,13 @@ void main()
     {
         print("Hat Power does not include what's on the Hatrack");
     }
+    string beretdesc = visit_url("desc_item.php?whichitem=370149661");
+    string afterberetda = substring(beretdesc,index_of(beretdesc, "Damage Absorption") + length("Damage Absorption +"));
+    int beretda = substring(afterberetda, 0, index_of(afterberetda, "<br>")).to_int();
     print("Hat Power: " + hat_power);
     print("Pant Power: " + pant_power);
     print("Shirt Power: " + shirt_power);
     print("Total Power: " + total_power);
     print("Expected DA: " + expected_da);
+    print("Actual DA: " + beretda);
 }
