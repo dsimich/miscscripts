@@ -38,9 +38,9 @@ void main()
     int shirt_power = get_power(equipped_item($slot[shirt]));
     int total_power = hat_power + pant_power + shirt_power;
     int expected_da = total_power / 5;
-    if(total_power > 1126)
+    if(total_power > 1100)
     {
-        expected_da = (1126 + (total_power - 1126) ** 0.8) / 5;
+        expected_da = (1100 + (total_power - 1100) ** 0.8) / 5;
     }
     if(hatrack_fam)
     {
