@@ -40,7 +40,7 @@ void main()
     int expected_da = total_power / 5;
     if(total_power > 1126)
     {
-        expected_da = (1126 + (total_power - 1126) ^ 0.8) / 5;
+        expected_da = (1126 + (total_power - 1126) ** 0.8) / 5;
     }
     if(hatrack_fam)
     {
@@ -50,4 +50,5 @@ void main()
     print("Pant Power: " + pant_power);
     print("Shirt Power: " + shirt_power);
     print("Total Power: " + total_power);
+    print("Expected DA: " + expected_da);
 }
