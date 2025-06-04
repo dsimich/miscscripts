@@ -28,11 +28,11 @@ void main()
         if((to_slot(h) == $slot[hat]) && (equipped_amount(h) >= 1))
         {
             hat_power += get_power(h);
-        }
-        if(get_power(h) > highest_hat)
-        {
-            highest_hat = get_power(h);
-            highest_hat_it = h;
+            if(get_power(h) > highest_hat)
+            {
+                highest_hat = get_power(h);
+                highest_hat_it = h;
+            }
         }
     }
     if(hatrack_fam)
