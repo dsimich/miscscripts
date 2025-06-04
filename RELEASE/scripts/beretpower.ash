@@ -45,10 +45,12 @@ void main()
     int shirt_power = get_power(equipped_item($slot[shirt]));
     int total_power = hat_power + pant_power + shirt_power;
     int expected_da = total_power / 5;
-    if(total_power > 1100)
+    int softcap_power = min(total_power, 1100) + max(0, total_power - 1100) ** 0.8;
+    if(my_path() == "Hat Trick")
     {
-        expected_da = floor((1100 + (total_power - 1100) ** 0.8) / 5) + 5;
+        softcap_power += highest_hat;
     }
+    expected_da = softcap_power / 5;
     if(hatrack_fam)
     {
         print("Hat Power does not include what's on the Hatrack");
