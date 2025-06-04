@@ -1,7 +1,7 @@
 void main()
 {
     int hat_multiplier = 1;
-    int pant_multiplier = 2;
+    int pant_multiplier = 1;
     if(have_skill($skill[Tao of the Terrapin]))
     {
         hat_multiplier += 1;
