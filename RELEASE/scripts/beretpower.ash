@@ -21,11 +21,16 @@ void main()
     {
         use_familiar($familiar[none]);
     }
+    int highest_hat;
     foreach h in $items[]
     {
         if((to_slot(h) == $slot[hat]) && (equipped_amount(h) >= 1))
         {
             hat_power += get_power(h);
+        }
+        if(get_power(h) > highest_hat)
+        {
+            highest_hat = get_power(h);
         }
     }
     if(hatrack_fam)
@@ -49,6 +54,7 @@ void main()
     string beretdesc = visit_url("desc_item.php?whichitem=370149661");
     string afterberetda = substring(beretdesc,index_of(beretdesc, "Damage Absorption") + length("Damage Absorption +"));
     int beretda = substring(afterberetda, 0, index_of(afterberetda, "<br>")).to_int();
+    print("Highest Hat: " + highest_hat);
     print("Hat Power: " + hat_power);
     print("Pant Power: " + pant_power);
     print("Shirt Power: " + shirt_power);
