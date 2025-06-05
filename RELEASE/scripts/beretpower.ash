@@ -44,10 +44,6 @@ void main()
     pant_power = pant_power * pant_multiplier;
     int shirt_power = get_power(equipped_item($slot[shirt]));
     int total_power = hat_power + pant_power + shirt_power;
-    if(my_path() == "Hat Trick")
-    {
-        total_power += highest_hat;
-    }
     int expected_da = total_power / 5;
     int softcap_power = min(total_power, 1100) + max(0, total_power - 1100) ** 0.8;
     expected_da = softcap_power / 5;
