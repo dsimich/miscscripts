@@ -38,7 +38,7 @@ void get_tattoos(string[int] tattoos, boolean quick)
 		return;
 	}
 
-	foreach tat in tattoos
+	foreach i, tat in tattoos
 	{
 		if(!contains_text(tattoos[tat],"redrogertat"))
 		{
@@ -67,7 +67,7 @@ void farm(int turns, boolean quick)
 		}
 		else
 		{
-			cli_execute(`garbo nobarf candydish ascend {turns}`);
+			cli_execute(`garbo nobarf candydish ascend {turns} target="cockroach`);
 		}
 		cli_execute(`chrono mode=soup`);
 	}
@@ -80,7 +80,7 @@ void farm(int turns, boolean quick)
 		}
 		else
 		{
-			cli_execute(`garbo nobarf candydish ascend {turns}`);
+			cli_execute(`garbo nobarf candydish ascend {turns} target="cockroach"`);
 		}
 		cli_execute(`freecandy`);
 	}
@@ -92,7 +92,7 @@ void farm(int turns, boolean quick)
 		}
 		else
 		{
-			cli_execute(`garbo candydish ascend {turns} target="Magically-animated snowman"`);
+			cli_execute(`garbo candydish ascend {turns} target="cockroach`);
 		}
 	}
 	return;
@@ -112,10 +112,10 @@ void main()
 	boolean quick = remaining_time < warning_time;
 
 	//get some tattoos
-	string[int] gettats = {"redrogertat", "ltttat"}; //Dynamic this eventually
+	string[int] gettats = {"redrogertat"}; //Dynamic this eventually
 	if(count(gettats) > 0)
 	{
-		foreach tat in gettats
+		foreach i, tat in gettats
 		{
 			buyPasses(gettats[tat], quick);
 		}
