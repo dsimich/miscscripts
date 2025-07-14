@@ -38,7 +38,7 @@ void get_tattoos(string[int] tattoos, boolean quick)
 		return;
 	}
 
-	foreach i, tat in tattoos
+	foreach tat, i in tattoos
 	{
 		if(!contains_text(tattoos[tat],"redrogertat"))
 		{
@@ -115,7 +115,7 @@ void main()
 	string[int] gettats = {"redrogertat"}; //Dynamic this eventually
 	if(count(gettats) > 0)
 	{
-		foreach i, tat in gettats
+		foreach tat, i in gettats
 		{
 			buyPasses(gettats[tat], quick);
 		}
