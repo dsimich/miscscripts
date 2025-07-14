@@ -92,7 +92,7 @@ void farm(int turns, boolean quick)
 		}
 		else
 		{
-			cli_execute(`garbo candydish ascend {turns} target="cockroach`);
+			cli_execute(`garbo candydish ascend {turns} target="cockroach"`);
 		}
 	}
 	return;
