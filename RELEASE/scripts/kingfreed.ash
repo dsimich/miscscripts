@@ -40,11 +40,11 @@ void get_tattoos(string[int] tattoos, boolean quick)
 
 	foreach i, tat in tattoos
 	{
-		if(!contains_text(tattoos[tat],"redrogertat"))
+		if(!contains_text(tat, "redrogertat"))
 		{
 			cli_execute(`PirateRealm skull cemetary fortress`);
 		}
-		if(!contains_text(tattoos[tat],"ltttat"))
+		if(!contains_text(tat,"ltttat"))
 		{
 			set_property("telegraphOfficeAvailable", true);
 			cli_execute(`telegram`);
@@ -118,7 +118,7 @@ void main()
 	{
 		foreach i, tat in gettats
 		{
-			buyPasses(gettats[tat], quick);
+			buyPasses(gettats[i], quick);
 		}
 	}
 	if(my_adventures() < count(gettats)*40)
