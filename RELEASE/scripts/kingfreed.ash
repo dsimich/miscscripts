@@ -7,14 +7,29 @@ boolean buyPasses(string tattoo, boolean quick)
 	}
 	int startPriceLimit = get_property("autoBuyPriceLimit").to_int();
 	item[string] tattoopass = {
-	"redrogertat": $item[PirateRealm guest pass],
-	"ltttat": $item[inflatable LT&T telegraph office],
-	"sbreaktat": $item[One-day ticket to Spring Break Beach],
-	"walmarttat": $item[One-day ticket to The Glaciest],
-	"merctat": $item[One-day ticket to Conspiracy Island],
-	"frpass": $item[FantasyRealm guest pass],
-	"gingercitytat": $item[Counterfeit city],
-	"debbietat": $item[One-day ticket to That 70s Volcano]};
+		"redrogertat": $item[PirateRealm guest pass],
+		"ltttat": $item[inflatable LT&T telegraph office],
+		"sbreaktat": $item[One-day ticket to Spring Break Beach],
+		"walmarttat": $item[One-day ticket to The Glaciest],
+		"merctat": $item[One-day ticket to Conspiracy Island],
+		"frpass": $item[FantasyRealm guest pass],
+		"gingercitytat": $item[Counterfeit city],
+		"debbietat": $item[One-day ticket to That 70s Volcano]
+	};
+	boolean[string] passUsed = {
+		"redrogertat": get_property("_prToday").to_boolean(),
+		"ltttat": get_property("_telegraphOfficeToday").to_boolean(),
+		"sbreaktat": get_property("_sleazeAirportToday").to_boolean(),
+		"walmarttat": get_property("_coldAirportToday").to_boolean(),
+		"merctat": get_property("_spookyAirportToday").to_boolean(),
+		"frpass": get_property("_frToday").to_boolean(),
+		"gingercitytat": get_property("gingerbreadCityAvailable").to_boolean(),
+		"debbietat": get_property("_hotAirportToday").to_boolean()
+	};
+	if(passUsed[tattoo])
+	{
+		return false;
+	}
 	if(item_amount(tattoopass[tattoo]) == 0)
 	{
 		if(mall_price(tattoopass[tattoo]) > startPriceLimit)
@@ -28,7 +43,7 @@ boolean buyPasses(string tattoo, boolean quick)
 			buy(1, tattoopass[tattoo]);
 		}
 	}
-	return use(1, tattoopass[tattoo]);
+	return use(tattoopass[tattoo]);
 }
 
 void get_tattoos(string[int] tattoos, boolean quick)
@@ -116,7 +131,7 @@ void main()
 	string[int] gettats = split_string(tats, ",");
 	if(count(gettats) > 0)
 	{
-		foreach i, tat in gettats
+		foreach tat, i in gettats
 		{
 			buyPasses(gettats[i], quick);
 		}
