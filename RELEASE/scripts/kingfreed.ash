@@ -28,7 +28,7 @@ boolean buyPasses(string tattoo, boolean quick)
 			buy(1, tattoopass[tattoo]);
 		}
 	}
-	return use(tattoopass[tattoo]);
+	return use(1, tattoopass[tattoo]);
 }
 
 void get_tattoos(string[int] tattoos, boolean quick)
