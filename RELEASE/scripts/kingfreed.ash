@@ -131,7 +131,7 @@ void main()
 	string[int] gettats = split_string(tats, ",");
 	if(count(gettats) > 0)
 	{
-		foreach tat, i in gettats
+		foreach i, tat in gettats
 		{
 			buyPasses(gettats[i], quick);
 		}
