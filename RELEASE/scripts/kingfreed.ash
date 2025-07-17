@@ -1,7 +1,7 @@
 //buy and use daily passes
 boolean buyPasses(string tattoo, boolean quick)
 {
-	if(!quick)
+	if(quick)
 	{
 		return false;
 	}
@@ -70,7 +70,7 @@ void get_tattoos(string[int] tattoos, boolean quick)
 	return;
 }
 
-void farm(int turns, boolean quick)
+void farm(int turns, boolean quick, string target)
 {
 	turns = -turns;
 	//Turns is turns remaining
@@ -80,11 +80,11 @@ void farm(int turns, boolean quick)
 		set_property("valueOfAdventure", 12000);
 		if(quick)
 		{
-			cli_execute(`garbo nobarf candydish quick {turns}`);
+			cli_execute(`garbo nobarf candydish quick {turns} target={target}`);
 		}
 		else
 		{
-			cli_execute(`garbo nobarf candydish ascend {turns} target="cockroach`);
+			cli_execute(`garbo nobarf candydish ascend {turns} target={target}`);
 		}
 		cli_execute(`chrono mode=soup`);
 	}
@@ -93,11 +93,11 @@ void farm(int turns, boolean quick)
 		set_property("valueOfAdventure", 12000);
 		if(quick)
 		{
-			cli_execute(`garbo nobarf candydish quick {turns}`);
+			cli_execute(`garbo nobarf candydish quick {turns} target={target}`);
 		}
 		else
 		{
-			cli_execute(`garbo nobarf candydish ascend {turns} target="cockroach"`);
+			cli_execute(`garbo nobarf candydish ascend {turns} target={target}`);
 		}
 		cli_execute(`freecandy`);
 	}
@@ -105,7 +105,7 @@ void farm(int turns, boolean quick)
 	{
 		if(quick)
 		{
-			cli_execute(`garbo nobarf candydish quick {turns}`);
+			cli_execute(`garbo nobarf candydish quick {turns} target={target}`);
 		}
 		else
 		{
@@ -128,6 +128,7 @@ void main()
 	int remaining_time = rollover() - (now_to_int()/1000);
 	boolean quick = remaining_time < warning_time;
 
+	string target = "cockroach";
 	//get some tattoos
 	string tats = "redrogertat"; //Dynamic this eventually
 	string[int] gettats = split_string(tats, ",");
@@ -140,7 +141,7 @@ void main()
 	}
 	if(my_adventures() < count(gettats)*40)
 	{
-		farm(count(gettats)*40, quick);
+		farm(count(gettats)*40, quick, target);
 	}
 	get_tattoos(gettats, quick);
 	farm(0, quick);
