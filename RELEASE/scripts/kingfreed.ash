@@ -28,6 +28,7 @@ boolean buyPasses(string tattoo, boolean quick)
 	};
 	if(passUsed[tattoo])
 	{
+		print("Don't need to buy a " + tattoopass[tattoo] + " to get " + tattoo + " because it was already used");
 		return false;
 	}
 	if(item_amount(tattoopass[tattoo]) == 0)
@@ -40,6 +41,7 @@ boolean buyPasses(string tattoo, boolean quick)
 		}
 		else
 		{
+			print("Trying to buy a " + tattoopass[tattoo] + " to get " + tattoo);
 			buy(1, tattoopass[tattoo]);
 		}
 	}
