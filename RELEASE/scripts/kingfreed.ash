@@ -144,7 +144,7 @@ void main()
 		farm(count(gettats)*40, quick, target);
 	}
 	get_tattoos(gettats, quick);
-	farm(0, quick);
+	farm(0, quick, target);
 
 	set_property("valueOfAdventure", 7000);
 	cli_execute("pvp_mab.js");
